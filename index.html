@@ -1,229 +1,151 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Md Shoriful Islam — Video Editor Portfolio</title>
-  <meta name="description" content="Professional video editor portfolio — cinematic edits, promos, wedding highlights." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Video Editor Portfolio — Md Shoriful Islam</title>
+<style>
+  body{margin:0;font-family:Inter,sans-serif;background:#0f172a;color:white;}
+  a{text-decoration:none;color:inherit;}
+  .container{max-width:1100px;margin:0 auto;padding:20px;}
 
-  <style>
-    /* Reset & basic styles */
-    *{box-sizing:border-box;margin:0;padding:0;}
-    html, body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;background:#0f172a;color:white;line-height:1.5;}
-    a{text-decoration:none;color:inherit;}
-    img{display:block;width:100%;height:auto;}
+  /* Header */
+  header{position:sticky;top:0;background:rgba(15,23,42,0.8);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .logo{width:50px;height:50px;background:linear-gradient(135deg,#06b6d4,#3b82f6);display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:700;color:white;}
+  h1{margin:0;font-size:20px;}
+  .actions a{margin-left:10px;padding:10px 16px;border-radius:8px;font-weight:600;transition:0.3s;}
+  .btn{background:white;color:#0f172a;}
+  .btn:hover{opacity:0.85;}
+  .btn.primary{background:#0f172a;color:white;border:1px solid #3b82f6;}
+  .btn.primary:hover{opacity:0.85;}
 
-    /* Container */
-    .container{max-width:1100px;margin:0 auto;padding:20px;}
+  /* Hero */
+  .hero{margin:28px 0;}
+  .hero h2{font-size:28px;margin-bottom:8px;}
+  .hero p{color:#cbd5e1;}
 
-    /* Header */
-    header{
-      position: sticky;
-      top:0;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:12px 20px;
-      backdrop-filter:blur(12px);
-      background:rgba(15,23,42,0.8);
-      border-bottom:1px solid rgba(255,255,255,0.1);
-      z-index:99;
-    }
-    .brand{display:flex;align-items:center;gap:12px;}
-    .logo{width:56px;height:56px;border-radius:8px;background:linear-gradient(135deg,#06b6d4,#3b82f6);display:flex;justify-content:center;align-items:center;font-weight:700;color:white;font-size:20px;}
-    h1{font-size:20px;}
-    p.lead{color:#cbd5e1;font-size:14px;}
+  /* Gallery */
+  #gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:20px;}
+  .card{background:#1e293b;padding:30px;border-radius:12px;text-align:center;font-size:18px;}
 
-    .actions{display:flex;gap:12px;}
-    .btn{padding:10px 16px;border-radius:8px;font-weight:600;background:white;color:#0f172a;transition:0.3s;box-shadow:0 4px 12px rgba(0,0,0,0.2);}
-    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.3);}
-    .btn.primary{background:#0f172a;color:white;border:1px solid #3b82f6;}
-    .btn.primary:hover{background:#1e293b;}
+  /* Modal / Lightbox */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:0.2s;z-index:99;}
+  .modal.open{opacity:1;visibility:visible;}
+  .player{background:#0f172a;border-radius:12px;max-width:900px;width:90%;overflow:hidden;}
+  .player .head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #3b82f6;}
+  .player iframe,.player video{width:100%;height:500px;border:0;display:block;}
+  .close-btn{background:#ef4444;color:white;padding:8px 12px;border-radius:8px;text-decoration:none;cursor:pointer;}
 
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-top:28px;align-items:center;}
-    .hero h2{font-size:32px;margin-bottom:8px;}
-    .hero p{color:#cbd5e1;}
-    .hero img{border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.3);height:260px;object-fit:cover;}
-
-    /* Search */
-    .search{margin-top:14px;}
-    .search input{width:100%;padding:12px;border-radius:10px;border:1px solid #475569;background:#1e293b;color:white;}
-
-    /* Tags */
-    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
-    .tag{padding:6px 10px;border-radius:999px;border:1px solid #3b82f6;background:transparent;color:white;font-size:13px;cursor:pointer;}
-    .tag:hover{background:#3b82f6;color:white;}
-
-    /* Gallery */
-    #gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:22px;}
-    .card{background:#1e293b;border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.4);cursor:pointer;transition:0.3s;}
-    .card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.6);}
-    .thumb{position:relative;height:160px;overflow:hidden;}
-    .thumb img{width:100%;height:100%;object-fit:cover;}
-    .duration{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,0.7);color:white;padding:4px 8px;border-radius:6px;font-size:12px;}
-    .card .meta{padding:12px;}
-    .card h3{margin:0;font-size:16px;}
-    .card p{margin-top:6px;color:#94a3b8;font-size:13px;}
-
-    /* Modal */
-    .modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px;visibility:hidden;opacity:0;transition:opacity .18s ease,visibility .18s;}
-    .modal.open{visibility:visible;opacity:1;}
-    .player{width:100%;max-width:1000px;background:#0f172a;border-radius:12px;overflow:hidden;}
-    .player .head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #3b82f6;}
-    .player iframe,.player video{width:100%;height:560px;border:0;display:block;}
-    .close-btn{background:#ef4444;color:white;padding:8px 12px;border-radius:8px;text-decoration:none;cursor:pointer;}
-
-    /* Contact */
-    #contact{margin-top:28px;background:rgba(255,255,255,0.05);padding:28px 20px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.3);text-align:center;}
-    #contact h3{margin-bottom:12px;font-size:22px;color:white;}
-    #contact p{margin-bottom:20px;color:#cbd5e1;font-size:16px;}
-    #contact a.contact-btn{display:inline-block;margin:6px;padding:12px 22px;border-radius:10px;font-weight:600;box-shadow:0 6px 15px rgba(0,0,0,0.2);transition:0.3s;color:white;}
-    #contact a.contact-btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,0.3);}
-
-    /* Footer */
-    footer{margin-top:26px;color:#94a3b8;font-size:14px;text-align:center;}
-
-    /* Responsive */
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr;}
-      .player iframe,.player video{height:360px;}
-    }
-  </style>
+  /* Contact */
+  footer{margin-top:26px;color:#94a3b8;font-size:14px;text-align:center;}
+</style>
 </head>
-
 <body>
-  <div class="container">
-    <!-- Header -->
-    <header>
-      <div class="brand">
-        <div class="logo">VE</div>
-        <div>
-          <h1>Md Shoriful Islam — Video Editor</h1>
-          <p class="lead">Cinematic edits • Color grading • Motion graphics</p>
-        </div>
-      </div>
-      <div class="actions">
-        <a class="btn" href="#contact">Contact</a>
-        <a class="btn primary" href="#gallery">See Work</a>
-      </div>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero">
+<div class="container">
+  <header>
+    <div class="brand">
+      <div class="logo">VS</div>
       <div>
-        <h2>I craft stories with motion.</h2>
-        <p>Professional video editor — wedding highlights, promos, and short films. Click any card to preview.</p>
-
-        <div class="search">
-          <input id="search" placeholder="Search projects (e.g., wedding, promo)" />
-        </div>
-
-        <div class="tags" id="tags">
-          <div class="tag">All</div>
-          <div class="tag">Promo</div>
-          <div class="tag">Cinematic</div>
-        </div>
+        <h1>Md Shoriful Islam — Video Editor</h1>
+        <p class="lead">Cinematic edits • Color grading • Motion graphics</p>
       </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Hero"/>
-      </div>
-    </section>
-
-    <!-- Gallery -->
-    <div id="gallery">
-      <article class="card" data-type="drive" data-src="https://drive.google.com/file/d/1wVBUzMaotqVIg-F28n8uKorVVdMJ5qWF/preview" data-title="Wedding Highlight — Rahim & Sumi">
-        
-        </div>
-        <div class="meta">
-          <h3>Wedding Highlight — Rahim & Sumi</h3>
-          <p>Wedding • Cinematic • Storytelling</p>
-        </div>
-      </article>
-
-      <article class="card" data-type="youtube" data-src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" data-title="Cinematic Short — City Lights">
-        <div class="thumb">
-          <img src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?q=80&w=1200&auto=format&fit=crop" alt="Cinematic" />
-          <div class="duration">2:34</div>
-        </div>
-        <div class="meta">
-          <h3>Cinematic Short — City Lights</h3>
-          <p>Cinematic • Color Grading • Short</p>
-        </div>
-      </article>
-
-      <article class="card" data-type="mp4" data-src="https://example.com/path/to/your-video.mp4" data-title="Product Promo — Smart Bottle">
-        <div class="thumb">
-          <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop" alt="Promo" />
-          <div class="duration">0:45</div>
-        </div>
-        <div class="meta">
-          <h3>Product Promo — Smart Bottle</h3>
-          <p>Promo • Motion Graphics • Product</p>
-        </div>
-      </article>
     </div>
+    <div class="actions">
+      <a class="btn" href="#contact">Contact</a>
+      <a class="btn primary" href="#gallery">See Work</a>
+    </div>
+  </header>
 
-    <!-- Contact -->
-    <section id="contact">
-      <h3>Contact Me</h3>
-      <p>Interested in hiring? Email me at <a href="mailto:mdshorifulislam6952@gmail.com" style="color:#06b6d4;text-decoration:underline">mdshorifulislam6952@gmail.com</a> or WhatsApp <a href="https://wa.me/8801581101235" style="color:#06b6d4;text-decoration:underline">01581101235</a></p>
-      <div>
-        <a href="mailto:mdshorifulislam6952@gmail.com" class="contact-btn" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)">Send Email</a>
-        <a href="#gallery" class="contact-btn" style="background:linear-gradient(135deg,#f97316,#facc15)">View Work</a>
-      </div>
-    </section>
+  <section class="hero">
+    <div>
+      <h2>I craft stories with motion.</h2>
+      <p>Professional video editor — wedding highlights, promos, and short films.</p>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>© <span id="year"></span> Md Shoriful Islam — Video Editor</footer>
-  </div>
-
-  <!-- Modal -->
-  <div id="modal" class="modal">
-    <div class="player">
-      <div class="head">
-        <div id="player-title" style="font-weight:700;padding-right:8px"></div>
-        <div><a id="close" class="close-btn">Close</a></div>
-      </div>
-      <div id="player-container"></div>
+  <!-- Gallery -->
+  <div id="gallery">
+    <div class="card" data-type="drive" data-src="https://drive.google.com/file/d/1wVBUzMaotqVIg-F28n8uKorVVdMJ5qWF/preview">
+      Wedding Highlight — Rahim & Sumi
+    </div>
+    <div class="card" data-type="youtube" data-src="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+      Cinematic Short — City Lights
+    </div>
+    <div class="card" data-type="mp4" data-src="https://example.com/path/to/video.mp4">
+      Product Promo — Smart Bottle
     </div>
   </div>
 
-  <script>
-    const gallery=document.getElementById('gallery');
-    const modal=document.getElementById('modal');
-    const playerContainer=document.getElementById('player-container');
-    const playerTitle=document.getElementById('player-title');
-    const closeBtn=document.getElementById('close');
-    const yearSpan=document.getElementById('year');yearSpan.textContent=new Date().getFullYear();
+  <!-- Contact -->
+  <section id="contact" style="margin-top:40px;text-align:center;">
+    <h3>Contact Me</h3>
+    <p>Email: <a href="mailto:mdshorifulislam6952@gmail.com" style="color:#06b6d4;">mdshorifulislam6952@gmail.com</a> | WhatsApp: <a href="https://wa.me/8801581101235" style="color:#06b6d4;">01581101235</a></p>
+  </section>
 
-    function isYouTube(url){return /youtube|youtu.be/.test(url);}
-    function isDrive(url){return /drive.google.com/.test(url);}
-    function isMP4(url){return /.mp4(\?|$)/i.test(url);}
+  <footer>
+    © <span id="year"></span> Md Shoriful Islam — Video Editor
+  </footer>
+</div>
 
-    function openPlayer(type, src, title){
-      playerContainer.innerHTML='';
-      playerTitle.textContent=title||'';
-      if(type==='youtube'||isYouTube(src)){
-        let id=''; if(src.includes('youtu.be')){id=src.split('/').pop();} else{const m=src.match(/[?&]v=([^&]+)/); id=m?m[1]:'';}
-        const embed=id?`https://www.youtube.com/embed/${id}?rel=0&autoplay=1`:src.replace('watch?v=','embed/');
-        const iframe=document.createElement('iframe');iframe.src=embed;iframe.allow='autoplay; encrypted-media; accelerometer; picture-in-picture';iframe.allowFullscreen=true;
-        playerContainer.appendChild(iframe);
-      } else if(type==='drive'||isDrive(src)){const iframe=document.createElement('iframe');iframe.src=src;iframe.allowFullscreen=true;playerContainer.appendChild(iframe);}
-      else if(type==='mp4'||isMP4(src)){const video=document.createElement('video');video.src=src;video.controls=true;video.autoplay=true;playerContainer.appendChild(video);}
-      else{window.open(src,'_blank');return;}
-      modal.classList.add('open');modal.setAttribute('aria-hidden','false');
-    }
+<!-- Modal / Lightbox -->
+<div id="modal" class="modal">
+  <div class="player">
+    <div class="head">
+      <div id="player-title" style="font-weight:700;color:white;"></div>
+      <a id="close" class="close-btn">Close</a>
+    </div>
+    <div id="player-container"></div>
+  </div>
+</div>
 
-    gallery.addEventListener('click',(e)=>{const card=e.target.closest('.card');if(!card)return;openPlayer(card.dataset.type,card.dataset.src,card.dataset.title);});
-    closeBtn.addEventListener('click',()=>{playerContainer.innerHTML='';modal.classList.remove('open');modal.setAttribute('aria-hidden','true');});
-    modal.addEventListener('click',(e)=>{if(e.target===modal){closeBtn.click();}});
+<script>
+const gallery=document.getElementById('gallery');
+const modal=document.getElementById('modal');
+const playerContainer=document.getElementById('player-container');
+const playerTitle=document.getElementById('player-title');
+const closeBtn=document.getElementById('close');
+const yearSpan=document.getElementById('year');
+yearSpan.textContent=new Date().getFullYear();
 
-    document.getElementById('search').addEventListener('input',function(){
-      const q=this.value.toLowerCase().trim();
-      document.querySelectorAll('#gallery .card').forEach(card=>{card.style.display=card.dataset.title.toLowerCase().includes(q)?'':'none';});
-    });
-  </script>
+function isYouTube(url){return /youtube|youtu.be/.test(url)}
+function isDrive(url){return /drive.google.com/.test(url)}
+function isMP4(url){return /.mp4(\?|$)/i.test(url)}
+
+function openPlayer(type,src,title){
+  playerContainer.innerHTML='';
+  playerTitle.textContent=title||'';
+  if(type==='youtube'||isYouTube(src)){
+    let id='';
+    if(src.includes('youtu.be')){id=src.split('/').pop();}
+    else{const m=src.match(/[?&]v=([^&]+)/);id=m?m[1]:'';}
+    const embed=id?`https://www.youtube.com/embed/${id}?rel=0&autoplay=1`:src.replace('watch?v=','embed/');
+    const iframe=document.createElement('iframe');
+    iframe.src=embed;
+    iframe.allow='autoplay; encrypted-media; accelerometer; picture-in-picture';
+    iframe.allowFullscreen=true;
+    playerContainer.appendChild(iframe);
+  } else if(type==='drive'||isDrive(src)){
+    const iframe=document.createElement('iframe');iframe.src=src;iframe.allowFullscreen=true;playerContainer.appendChild(iframe);
+  } else if(type==='mp4'||isMP4(src)){
+    const video=document.createElement('video');video.src=src;video.controls=true;video.autoplay=true;playerContainer.appendChild(video);
+  }
+  modal.classList.add('open');modal.setAttribute('aria-hidden','false');
+}
+
+// Automatically open the first video on page load
+window.addEventListener('load',()=>{
+  const firstCard = gallery.querySelector('.card');
+  if(firstCard){
+    const type = firstCard.dataset.type||'';
+    const src = firstCard.dataset.src||'';
+    const title = firstCard.textContent.trim();
+    openPlayer(type,src,title);
+  }
+});
+
+closeBtn.addEventListener('click',()=>{playerContainer.innerHTML='';modal.classList.remove('open');modal.setAttribute('aria-hidden','true');});
+modal.addEventListener('click',e=>{if(e.target===modal){closeBtn.click();}});
+</script>
 </body>
 </html>
-
