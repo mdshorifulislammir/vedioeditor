@@ -1,151 +1,135 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Video Editor Portfolio — Md Shoriful Islam</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Shoriful | Video Editor Portfolio</title>
 <style>
-  body{margin:0;font-family:Inter,sans-serif;background:#0f172a;color:white;}
-  a{text-decoration:none;color:inherit;}
-  .container{max-width:1100px;margin:0 auto;padding:20px;}
+body { margin:0; font-family: Arial, sans-serif; background:#111; color:#fff; scroll-behavior: smooth; }
 
-  /* Header */
-  header{position:sticky;top:0;background:rgba(15,23,42,0.8);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,0.1);}
-  .brand{display:flex;align-items:center;gap:12px;}
-  .logo{width:50px;height:50px;background:linear-gradient(135deg,#06b6d4,#3b82f6);display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:700;color:white;}
-  h1{margin:0;font-size:20px;}
-  .actions a{margin-left:10px;padding:10px 16px;border-radius:8px;font-weight:600;transition:0.3s;}
-  .btn{background:white;color:#0f172a;}
-  .btn:hover{opacity:0.85;}
-  .btn.primary{background:#0f172a;color:white;border:1px solid #3b82f6;}
-  .btn.primary:hover{opacity:0.85;}
+/* Header */
+header { display:flex; justify-content:space-between; align-items:center; padding:20px 50px; background:#1a1a1a; position:sticky; top:0; z-index:1000; }
+.logo { font-size:26px; font-weight:bold; color:#00bfff; }
 
-  /* Hero */
-  .hero{margin:28px 0;}
-  .hero h2{font-size:28px;margin-bottom:8px;}
-  .hero p{color:#cbd5e1;}
+/* Menu link animation */
+nav a {
+  color:#fff;
+  text-decoration:none;
+  margin-left:25px;
+  position:relative;
+  transition: 0.3s;
+}
+nav a::after {
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:0;
+  height:2px;
+  background:#00bfff;
+  transition: width 0.3s ease;
+}
+nav a:hover::after { width:100%; }
+nav a:hover { color:#00bfff; transform: translateY(-2px); }
 
-  /* Gallery */
-  #gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:20px;}
-  .card{background:#1e293b;padding:30px;border-radius:12px;text-align:center;font-size:18px;}
+/* Hero */
+.hero { text-align:center; padding:120px 20px; background:url('https://images.unsplash.com/photo-1581092335360-5fdd1a7b8f4d?fit=crop&w=1950&q=80') center/cover no-repeat; opacity:0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.hero.visible { opacity:1; transform: translateY(0); }
+.hero h1 { font-size:50px; color:#00bfff; margin-bottom:10px; }
+.hero p { font-size:22px; color:#fff; }
 
-  /* Modal / Lightbox */
-  .modal{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:0.2s;z-index:99;}
-  .modal.open{opacity:1;visibility:visible;}
-  .player{background:#0f172a;border-radius:12px;max-width:900px;width:90%;overflow:hidden;}
-  .player .head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #3b82f6;}
-  .player iframe,.player video{width:100%;height:500px;border:0;display:block;}
-  .close-btn{background:#ef4444;color:white;padding:8px 12px;border-radius:8px;text-decoration:none;cursor:pointer;}
+/* Portfolio */
+.portfolio { padding:50px 20px; max-width:1200px; margin:auto; opacity:0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.portfolio.visible { opacity:1; transform: translateY(0); }
+.portfolio h2 { text-align:center; font-size:38px; margin-bottom:40px; color:#00bfff; }
+.videos { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:25px; }
 
-  /* Contact */
-  footer{margin-top:26px;color:#94a3b8;font-size:14px;text-align:center;}
+.video-card { position: relative; overflow: hidden; border-radius: 12px; background: #000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+.iframe-container { position: relative; width:100%; padding-bottom:56.25%; height:0; }
+.iframe-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+.video-title { position:absolute; bottom:0; left:0; width:100%; padding:10px 15px; background: rgba(0,0,0,0.6); color:#fff; font-size:18px; text-align:center; font-weight:bold; }
+
+/* Contact */
+.contact { padding:50px 20px; background:#1a1a1a; text-align:center; opacity:0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.contact.visible { opacity:1; transform: translateY(0); }
+.contact h2 { font-size:38px; margin-bottom:30px; color:#00bfff; }
+.contact p { font-size:20px; line-height:2; }
+.contact a { color:#00bfff; text-decoration:none; display:inline-block; position:relative; transition: transform 0.3s, color 0.3s; }
+.contact a:hover { color:#ffdd00; transform: scale(1.1) rotate(-2deg); }
+
+/* Floating Corner Icons */
+.floating-icons { position: fixed; right: 20px; bottom: 20px; display: flex; flex-direction: column; gap: 15px; z-index: 10000; }
+.floating-icons a { display:flex; justify-content:center; align-items:center; width:55px; height:55px; border-radius:50%; background:#00bfff; color:#fff; font-size:24px; text-decoration:none; box-shadow:0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s, background 0.3s; }
+.floating-icons a:hover { transform: scale(1.2) rotate(-10deg); background:#ffdd00; color:#111; animation: bounce 0.5s ease; }
+@keyframes bounce { 0%{transform:scale(1.2) translateY(0) rotate(-10deg);} 50%{transform:scale(1.2) translateY(-8px) rotate(-10deg);} 100%{transform:scale(1.2) translateY(0) rotate(-10deg);} }
+
+footer { text-align:center; padding:20px; background:#111; color:#888; }
+@media(max-width:768px){ header { flex-direction:column; } }
 </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <div class="brand">
-      <div class="logo">VS</div>
-      <div>
-        <h1>Md Shoriful Islam — Video Editor</h1>
-        <p class="lead">Cinematic edits • Color grading • Motion graphics</p>
-      </div>
-    </div>
-    <div class="actions">
-      <a class="btn" href="#contact">Contact</a>
-      <a class="btn primary" href="#gallery">See Work</a>
-    </div>
-  </header>
 
-  <section class="hero">
-    <div>
-      <h2>I craft stories with motion.</h2>
-      <p>Professional video editor — wedding highlights, promos, and short films.</p>
-    </div>
-  </section>
+<header>
+  <div class="logo">Md Shoriful</div>
+  <nav>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-  <!-- Gallery -->
-  <div id="gallery">
-    <div class="card" data-type="drive" data-src="https://drive.google.com/file/d/1wVBUzMaotqVIg-F28n8uKorVVdMJ5qWF/preview">
-      Wedding Highlight — Rahim & Sumi
-    </div>
-    <div class="card" data-type="youtube" data-src="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-      Cinematic Short — City Lights
-    </div>
-    <div class="card" data-type="mp4" data-src="https://example.com/path/to/video.mp4">
-      Product Promo — Smart Bottle
-    </div>
-  </div>
+<section class="hero">
+  <h1>Professional Video Editor</h1>
+  <p>Transforming your ideas into cinematic experiences</p>
+</section>
 
-  <!-- Contact -->
-  <section id="contact" style="margin-top:40px;text-align:center;">
-    <h3>Contact Me</h3>
-    <p>Email: <a href="mailto:mdshorifulislam6952@gmail.com" style="color:#06b6d4;">mdshorifulislam6952@gmail.com</a> | WhatsApp: <a href="https://wa.me/8801581101235" style="color:#06b6d4;">01581101235</a></p>
-  </section>
+<section class="portfolio" id="portfolio">
+  <h2>My Video Work</h2>
+  <div class="videos" id="videos-container"></div>
+</section>
 
-  <footer>
-    © <span id="year"></span> Md Shoriful Islam — Video Editor
-  </footer>
+<section class="contact" id="contact">
+  <h2>Contact Me</h2>
+  <p>Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mdshorifulislam6952@gmail.com" target="_blank">mdshorifulislam6952@gmail.com</a></p>
+  <p>WhatsApp: <a href="https://wa.me/8801581101235" target="_blank">+8801581101235</a></p>
+</section>
+
+<div class="floating-icons">
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mdshorifulislam6952@gmail.com" target="_blank" title="Email">✉️</a>
+  <a href="https://wa.me/8801581101235" target="_blank" title="WhatsApp">💬</a>
 </div>
 
-<!-- Modal / Lightbox -->
-<div id="modal" class="modal">
-  <div class="player">
-    <div class="head">
-      <div id="player-title" style="font-weight:700;color:white;"></div>
-      <a id="close" class="close-btn">Close</a>
-    </div>
-    <div id="player-container"></div>
-  </div>
-</div>
+<footer>&copy; 2025 Md Shoriful | Video Editor</footer>
 
 <script>
-const gallery=document.getElementById('gallery');
-const modal=document.getElementById('modal');
-const playerContainer=document.getElementById('player-container');
-const playerTitle=document.getElementById('player-title');
-const closeBtn=document.getElementById('close');
-const yearSpan=document.getElementById('year');
-yearSpan.textContent=new Date().getFullYear();
+// Video Cards
+const videos = [
+  { title: "Project 1", link: "https://drive.google.com/file/d/1wVBUzMaotqVIg-F28n8uKorVVdMJ5qWF/preview" },
+  { title: "Project 2", link: "https://drive.google.com/file/d/1wVBUzMaotqVIg-F28n8uKorVVdMJ5qWF/preview" },
+  { title: "Project 3", link: "https://drive.google.com/file/d/1wVBUzMaotqVIg-F28n8uKorVVdMJ5qWF/preview" }
+];
 
-function isYouTube(url){return /youtube|youtu.be/.test(url)}
-function isDrive(url){return /drive.google.com/.test(url)}
-function isMP4(url){return /.mp4(\?|$)/i.test(url)}
-
-function openPlayer(type,src,title){
-  playerContainer.innerHTML='';
-  playerTitle.textContent=title||'';
-  if(type==='youtube'||isYouTube(src)){
-    let id='';
-    if(src.includes('youtu.be')){id=src.split('/').pop();}
-    else{const m=src.match(/[?&]v=([^&]+)/);id=m?m[1]:'';}
-    const embed=id?`https://www.youtube.com/embed/${id}?rel=0&autoplay=1`:src.replace('watch?v=','embed/');
-    const iframe=document.createElement('iframe');
-    iframe.src=embed;
-    iframe.allow='autoplay; encrypted-media; accelerometer; picture-in-picture';
-    iframe.allowFullscreen=true;
-    playerContainer.appendChild(iframe);
-  } else if(type==='drive'||isDrive(src)){
-    const iframe=document.createElement('iframe');iframe.src=src;iframe.allowFullscreen=true;playerContainer.appendChild(iframe);
-  } else if(type==='mp4'||isMP4(src)){
-    const video=document.createElement('video');video.src=src;video.controls=true;video.autoplay=true;playerContainer.appendChild(video);
-  }
-  modal.classList.add('open');modal.setAttribute('aria-hidden','false');
-}
-
-// Automatically open the first video on page load
-window.addEventListener('load',()=>{
-  const firstCard = gallery.querySelector('.card');
-  if(firstCard){
-    const type = firstCard.dataset.type||'';
-    const src = firstCard.dataset.src||'';
-    const title = firstCard.textContent.trim();
-    openPlayer(type,src,title);
-  }
+const container = document.getElementById('videos-container');
+videos.forEach(video => {
+  const card = document.createElement('div');
+  card.className = 'video-card';
+  card.innerHTML = `
+    <div class="iframe-container">
+      <iframe src="${video.link}" allow="autoplay" allowfullscreen></iframe>
+    </div>
+    <div class="video-title">${video.title}</div>
+  `;
+  container.appendChild(card);
 });
 
-closeBtn.addEventListener('click',()=>{playerContainer.innerHTML='';modal.classList.remove('open');modal.setAttribute('aria-hidden','true');});
-modal.addEventListener('click',e=>{if(e.target===modal){closeBtn.click();}});
+// Section Fade-in Animation
+const sections = document.querySelectorAll('section');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+  });
+}, { threshold:0.2 });
+sections.forEach(section => observer.observe(section));
 </script>
+
 </body>
 </html>
